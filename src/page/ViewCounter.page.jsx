@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 
 const ViewCounterPage = () => {
-  const counter = useSelector((state) => state.counter.counter);
+  // state.slice.variable
+  const counter = useSelector((state) => state.counterSlice.counter);
   //const [counter, setCounter] = useState(0)
   return (
     <div className="input-group mb-3">
@@ -13,6 +14,7 @@ const ViewCounterPage = () => {
           id="floatingInputGroup1"
           placeholder="Counter"
           value={counter}
+          readOnly
         />
         <label htmlFor="floatingInputGroup1">Counter</label>
       </div>

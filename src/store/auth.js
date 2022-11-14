@@ -1,34 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//create variable that we want redux to store
 const initialState = {
-  counter: 0,
+  loggedIn: false,
 };
 
-const counterSlice = createSlice({
+const authSlice = createSlice({
   //redux use it, like key in react
-  name: "counter",
+  name: "auth",
   //initial state
   initialState: initialState,
   //functions to munipulate the state
   //the functions inside the reducers called actions
   reducers: {
-    add1(state) {
-      state.counter++;
+    login(state) {
+      state.loggedIn = true;
     },
-    sub1(state) {
-      state.counter--;
-    },
-    addNumber(state, action) {
-      state.counter += +action.payload;
+    logout(state) {
+      state.loggedIn = false;
     },
   },
 });
 
 //export the actions so we can use them inside other components
 //to update the slice "counter state"
-export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 //export the configuration to index.js of redux
 //so redux can configure the "big state"
-export default counterSlice.reducer;
+export default authSlice.reducer;
