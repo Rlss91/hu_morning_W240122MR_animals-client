@@ -6,6 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 
+/* redux */
+import { Provider } from "react-redux";
+import store from "./store/index";
+
+/* bootstrap */
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 
@@ -33,10 +38,15 @@ axios.interceptors.request.use((config) => {
 */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+/*
+  provider is a component that let every other components access to our redux
+*/
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
