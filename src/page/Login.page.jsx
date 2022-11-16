@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -15,8 +18,9 @@ const LoginPage = () => {
     ev.preventDefault();
     try {
       const { data } = await axios.post("/login", userData);
-      console.log("data", data);
+      //   console.log("data", data);
       localStorage.setItem("token", data.token);
+      dispatch(authActions.login());
     } catch (err) {
       console.log(err);
     }
