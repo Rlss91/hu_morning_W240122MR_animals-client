@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const emailRef = useRef();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
   const handleTextChange = (ev) => {
     let newUserData = JSON.parse(JSON.stringify(userData));
     newUserData[ev.target.id] = ev.target.value;
@@ -38,6 +42,7 @@ const LoginPage = () => {
           aria-describedby="emailHelp"
           onChange={handleTextChange}
           value={userData.email}
+          ref={emailRef}
         />
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
