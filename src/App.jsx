@@ -11,6 +11,8 @@ import UploadPage from "./page/Upload.page";
 import NewAnimalPage from "./page/NewAnimal.page";
 import AllAnimalsPage from "./page/AllAnimals.page";
 import RegisterPage from "./page/Register.page";
+import ForgetPasswordPage from "./page/ForgetPassword.page";
+import ResetPasswordPage from "./page/ResetPassword.page";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
+        <Route path="/forgetpassword" component={ForgetPasswordPage} />
+        <Route path="/resetpassword/:token" component={ResetPasswordPage} />
         <AuthGuardRoute path="/upload" component={UploadPage} />
         <Route path="/newanimal" component={NewAnimalPage} />
         <Route path="/allanimals" component={AllAnimalsPage} />
