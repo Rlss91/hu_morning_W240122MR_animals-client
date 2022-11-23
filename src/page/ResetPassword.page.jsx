@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 const ResetPasswordPage = () => {
   const { token } = useParams();
+  const history = useHistory();
   const [userData, setUserData] = useState({
     password: "",
   });
