@@ -1,20 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { authActions } from "../store/auth";
-import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const LoginPage = () => {
-  const dispatch = useDispatch();
-  const emailRef = useRef();
-  const history = useHistory();
+const RegisterPage = () => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
+    name: "",
   });
-  useEffect(() => {
-    emailRef.current.focus();
-  }, []);
   const handleTextChange = (ev) => {
     let newUserData = JSON.parse(JSON.stringify(userData));
     newUserData[ev.target.id] = ev.target.value;
@@ -23,11 +16,17 @@ const LoginPage = () => {
   const handleFormSubmit = async (ev) => {
     ev.preventDefault();
     try {
-      const { data } = await axios.post("/login", userData);
-      //   console.log("data", data);
-      localStorage.setItem("token", data.token);
-      dispatch(authActions.login());
-      history.push("/upload");
+      const { data } = await axios.post("/register", userData);
+      toast.info("Please check your email, to confirm your email🙏", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +44,6 @@ const LoginPage = () => {
           aria-describedby="emailHelp"
           onChange={handleTextChange}
           value={userData.email}
-          ref={emailRef}
         />
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
@@ -63,10 +61,21 @@ const LoginPage = () => {
           value={userData.password}
         />
       </div>
-
+      <div className="mb-3">
+        <label htmlFor="name" className="form-label">
+          Full name
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="name"
+          onChange={handleTextChange}
+          value={userData.name}
+        />
+      </div>
       <button className="btn btn-primary">Submit</button>
     </form>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

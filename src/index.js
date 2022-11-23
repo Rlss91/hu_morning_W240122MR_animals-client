@@ -14,6 +14,9 @@ import store from "./store/index";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 
+/* toastify */
+import "../node_modules/react-toastify/dist/ReactToastify.css";
+
 /* axios config */
 axios.defaults.baseURL = "http://localhost:8000/api";
 /* 
